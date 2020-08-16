@@ -1,5 +1,0 @@
-"Story","Title","Result","Date","Stability","Duration (s)"
-"To validate the comments for the post made by specific user","To validate if emails in the comment section are in the proper format","FAILURE","2020-08-16T12:40:02.078+01:00[Europe/London]","0.0","5.99"
-"To validate the comments for the post made by specific user","To validate if name in the comment is not empty","FAILURE","2020-08-16T12:40:08.071+01:00[Europe/London]","0.0","0.56"
-"To validate the comments for the post made by specific user","To validate if body in the comment is not empty","FAILURE","2020-08-16T12:40:08.646+01:00[Europe/London]","0.0","0.57"
-"To validate the comments for the post made by specific user","To validate if length of body in the comment is not less than 30 characters","FAILURE","2020-08-16T12:40:09.226+01:00[Europe/London]","0.0","0.64"

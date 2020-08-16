@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cucumber.TestContext;
-
+import utils.EmailValidation;
 
 public class MasterSteps {
 	protected TestContext testContext;
@@ -66,52 +66,61 @@ public class MasterSteps {
 	}
 
 	protected void validateFormatOfEmailIds() {
-		List<String> invalidEmailIds = new ArrayList<String>();
+		List<Integer> invalidEmailIds = new ArrayList<Integer>();
 		List<String> emailIdsFromComments = testContext.getCommentsManager().getEmailIdsFromComments();
-		
+
 		emailIdsFromComments.forEach(emailId -> {
 			// if (!EmailValidation.isValidEmail(emailId)) {
-			if (emailId.endsWith("net")) {
-				invalidEmailIds.add(emailId);
+			if (EmailValidation.isValidEmail(emailId)) {
+				int commentId = testContext.getCommentsManager().getCommentIdsOnPosts()
+						.get(emailIdsFromComments.indexOf(emailId));
+				invalidEmailIds.add(commentId);
 			}
 		});
+
+		System.out.println(invalidEmailIds.size());
 		if (invalidEmailIds.size() > 0) {
-			invalidEmailIds.forEach(emailId -> {
-				System.out.println("Email Address ending with .net:- " + emailId);
+			logger.info("CommentIds where values where invalid formated Email provided..");
+			invalidEmailIds.forEach(id -> {
+				logger.info(id.toString());
 			});
 		}
 	}
 
-	protected void validateIfTextEmpty(List<String> textToValidate, String text) {
+	protected void validateIfFieldEmpty(List<String> textToValidate, String text) {
 		List<Integer> blankText = new ArrayList<Integer>();
 		textToValidate.forEach(textValue -> {
-			// if (textValue.isEmpty()) {
-			if (textValue.length() < 6) {
-				int commentId = testContext.getCommentsManager().getCommentIdsOnPosts().get(textToValidate.indexOf(textValue));
+			 if (textValue.isEmpty()) {
+				int commentId = testContext.getCommentsManager().getCommentIdsOnPosts()
+						.get(textToValidate.indexOf(textValue));
 				blankText.add(commentId);
 			}
 		});
 
+		System.out.println(blankText.size());
 		if (blankText.size() > 0) {
-			logger.info("CommentIds where values are empty for "+ text);
-			blankText.forEach(value -> {
-				logger.info(value.toString());
-				
+			logger.info("CommentIds where values are empty for " + text);
+			blankText.forEach(id -> {
+				logger.info(id.toString());
 			});
 		}
 	}
 
-	protected void validateLengthOfComment(List<String> textToValidate, int commentLength) {
-		List<String> blankText = new ArrayList<String>();
+	protected void validateLengthOfCommentField(List<String> textToValidate, int commentLength, String nameOfField) {
+		List<Integer> blankText = new ArrayList<Integer>();
 		textToValidate.forEach(textValue -> {
 			if (textValue.length() < commentLength) {
-				blankText.add(textValue);
+				int commentId = testContext.getCommentsManager().getCommentIdsOnPosts()
+						.get(textToValidate.indexOf(textValue));
+				blankText.add(commentId);
 			}
 		});
 
+		System.out.println(blankText.size());
 		if (blankText.size() > 0) {
-			blankText.forEach(name -> {
-				System.out.println("Comments not less than " + commentLength + ":- " + name);
+			logger.info("CommentIds where length of " + nameOfField + " less than " + commentLength);
+			blankText.forEach(id -> {
+				logger.info(id.toString());
 			});
 		}
 	}

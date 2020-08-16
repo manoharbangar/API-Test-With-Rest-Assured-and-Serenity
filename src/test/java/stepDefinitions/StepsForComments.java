@@ -38,14 +38,16 @@ public class StepsForComments extends MasterSteps {
 	public void validate_that_name_in_the_comment_section_are_not_empty() {
 		// getNamesForComments method will get names from comments
 		getNamesForComments();
-		validateIfTextEmpty(testContext.getCommentsManager().getNamesFromComments(),"name");
+		// validateIfFieldEmpty method will validate if text is empty
+		validateIfFieldEmpty(testContext.getCommentsManager().getNamesFromComments(),"name");
 	}
 
 	@Then("validate that text body in the comment section is not empty")
 	public void validate_that_text_body_in_the_comment_section_is_not_empty() {
 		// getNamesForComments method will get bodys from comments
 		getBodysForComments();
-		validateIfTextEmpty(testContext.getCommentsManager().getBodysFromComments(),"body");
+		// validateIfFieldEmpty method will validate if text is empty
+		validateIfFieldEmpty(testContext.getCommentsManager().getBodysFromComments(),"body");
 	}
 
 	@Then("validate that the length of text body in the comment is not less than {string} characters")
@@ -53,7 +55,8 @@ public class StepsForComments extends MasterSteps {
 		// getBodysForComments method will validate if length of comment body
 		// is not less than required characters
 		getBodysForComments();
-		validateLengthOfComment(testContext.getCommentsManager().getBodysFromComments(),Integer.parseInt(commentLength));
+		// validateIfFieldEmpty method will validate if text is empty
+		validateLengthOfCommentField(testContext.getCommentsManager().getBodysFromComments(),Integer.parseInt(commentLength), "body");
 	}
 
 }

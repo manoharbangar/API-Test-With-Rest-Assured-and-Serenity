@@ -1,5 +1,0 @@
-"Story","Title","Result","Date","Stability","Duration (s)"
-"To validate the comments for the post made by specific user","To validate if emails in the comment section are in the proper format","ERROR","13:14:35","0.0","4.17"
-"To validate the comments for the post made by specific user","To validate if name in the comment is not empty","ERROR","13:14:39","0.0","0.6"
-"To validate the comments for the post made by specific user","To validate if body in the comment is not empty","ERROR","13:14:40","0.0","0.57"
-"To validate the comments for the post made by specific user","To validate if length of body in the comment is not less than 30 characters","ERROR","13:14:40","0.0","0.56"
