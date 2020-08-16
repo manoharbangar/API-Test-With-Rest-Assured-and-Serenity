@@ -35,7 +35,6 @@ public class EndPoints {
 
 	// Method to return List of Post ids for given userId
 	public List<Integer> getUserPosts(int userId) {
-		System.out.println(userId);
 		Response response = SerenityRest.given().param("userId", userId).get(postsEndPoint);
 		Assert.assertEquals(response.getStatusCode(), 200);
 		List<Integer> userPostIds = response.jsonPath().get("id");
