@@ -3,7 +3,6 @@ package apiMachine;
 import java.util.List;
 
 import org.junit.Assert;
-
 import io.restassured.response.Response;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.util.EnvironmentVariables;
@@ -29,12 +28,8 @@ public class EndPoints {
 		List<Integer> allUsersIds = response.jsonPath().get("id");
 		if (allUsersIds.size() == 1) {
 			return allUsersIds.get(0);
-		} else if (allUsersIds.size() == 0) {
-			System.out.println("No user found for username: - " + userName);
-			return 0;
 		} else {
-			System.out.println("More than one users found for username: -" + userName);
-			return 0;
+			return -1;
 		}
 	}
 
@@ -44,12 +39,7 @@ public class EndPoints {
 		Response response = SerenityRest.given().param("userId", userId).get(postsEndPoint);
 		Assert.assertEquals(response.getStatusCode(), 200);
 		List<Integer> userPostIds = response.jsonPath().get("id");
-		if (userPostIds.size() > 0) {
 			return userPostIds;
-		} else {
-			System.out.println("No posts found for user with userId :- " + userId);
-			return null;
-		}
 	}
 
 	// Method to return List of comment ids for given post id
@@ -57,12 +47,7 @@ public class EndPoints {
 		Response response = SerenityRest.given().param("postId", postId).get(commentsEndPoint);
 		Assert.assertEquals(response.getStatusCode(), 200);
 		List<Integer> allCommentIds = response.jsonPath().get("id");
-		if (allCommentIds.size() > 0) {
 			return allCommentIds;
-		} else {
-			System.out.println("No comments found for PostId: -" + postId);
-			return null;
-		}
 	}
 
 	// Method to return list of email ids for given commentId
@@ -70,12 +55,7 @@ public class EndPoints {
 		Response response = SerenityRest.given().param("id", commentId).get(commentsEndPoint);
 		Assert.assertEquals(response.getStatusCode(), 200);
 		List<String> emailIdsFromComments = response.jsonPath().get("email");
-		if (emailIdsFromComments.size() == 1) {
 			return emailIdsFromComments;
-		} else {
-			System.out.println("No Email id found for comment: -" + commentId);
-			return null;
-		}
 	}
 
 	// Method to return List of Names for given commentId
@@ -83,12 +63,7 @@ public class EndPoints {
 		Response response = SerenityRest.given().param("id", commentId).get(commentsEndPoint);
 		Assert.assertEquals(response.getStatusCode(), 200);
 		List<String> namesFromComments = response.jsonPath().get("name");
-		if (namesFromComments.size() == 1) {
 			return namesFromComments;
-		} else {
-			System.out.println("No names found for the for comment: -" + commentId);
-			return null;
-		}
 	}
 
 	// Method to return List of comment body for given commentId
@@ -96,12 +71,6 @@ public class EndPoints {
 		Response response = SerenityRest.given().param("id", commentId).get(commentsEndPoint);
 		Assert.assertEquals(response.getStatusCode(), 200);
 		List<String> bodysFromComments = response.jsonPath().get("body");
-		if (bodysFromComments.size() == 1) {
 			return bodysFromComments;
-		} else {
-			System.out.println("No text body found for comment: -" + commentId);
-			return null;
-		}
 	}
-
 }

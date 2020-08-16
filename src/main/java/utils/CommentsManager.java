@@ -1,5 +1,6 @@
 package utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommentsManager {
@@ -57,7 +58,15 @@ public class CommentsManager {
 	public void setBodysFromComments(List<String> bodysFromComments) {
 		this.bodysFromComments = bodysFromComments;
 	}
-
-
+	
+	public ArrayList<String> getListOfStrings(){
+		return new ArrayList<String>();
+	}
+	
+	public ArrayList<Integer> getListOfIntegers(){
+		return new ArrayList<Integer>();
+	}
+	
+	
 
 }
