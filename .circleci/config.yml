@@ -4,6 +4,9 @@ version: 2.1
 workflows:
   maven_test:
     jobs:
-      - maven/test # checkout, build, test, and upload test results
-      - store_test_results:
-          path: ~/target/site/serenity
+      build:
+        steps:
+          - maven/test # checkout, build, test, and upload test results
+          - run: mkdir test-reports
+          - run: store_test_results
+                 path: ~/target/site/serenity
