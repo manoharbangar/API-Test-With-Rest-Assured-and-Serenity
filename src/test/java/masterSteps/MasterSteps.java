@@ -68,10 +68,8 @@ public class MasterSteps {
 	protected void validateFormatOfEmailIds() {
 		List<Integer> invalidEmailIds = new ArrayList<Integer>();
 		List<String> emailIdsFromComments = testContext.getCommentsManager().getEmailIdsFromComments();
-
 		emailIdsFromComments.forEach(emailId -> {
-			// if (!EmailValidation.isValidEmail(emailId)) {
-			if (EmailValidation.isInvalidEmail(emailId)) {
+			if (!EmailValidation.isValidEmail(emailId)) {
 				int commentId = testContext.getCommentsManager().getCommentIdsOnPosts()
 						.get(emailIdsFromComments.indexOf(emailId));
 				invalidEmailIds.add(commentId);
@@ -80,7 +78,7 @@ public class MasterSteps {
 
 		System.out.println(invalidEmailIds.size());
 		if (invalidEmailIds.size() > 0) {
-			logger.info("CommentIds where values where invalid formated Email provided..");
+			logger.info("Below list of commentIds where email addressesare in invalid format..");
 			invalidEmailIds.forEach(id -> {
 				logger.info(id.toString());
 			});
@@ -90,7 +88,7 @@ public class MasterSteps {
 	protected void validateIfFieldEmpty(List<String> textToValidate, String text) {
 		List<Integer> blankText = new ArrayList<Integer>();
 		textToValidate.forEach(textValue -> {
-			 if (textValue.isEmpty()) {
+			if (textValue.isEmpty()) {
 				int commentId = testContext.getCommentsManager().getCommentIdsOnPosts()
 						.get(textToValidate.indexOf(textValue));
 				blankText.add(commentId);
@@ -99,7 +97,7 @@ public class MasterSteps {
 
 		System.out.println(blankText.size());
 		if (blankText.size() > 0) {
-			logger.info("CommentIds where values are empty for " + text);
+			logger.info("Below list of commentIds where empty " + text + " values are prvided...");
 			blankText.forEach(id -> {
 				logger.info(id.toString());
 			});
@@ -118,7 +116,8 @@ public class MasterSteps {
 
 		System.out.println(blankText.size());
 		if (blankText.size() > 0) {
-			logger.info("CommentIds where length of " + nameOfField + " less than " + commentLength);
+			logger.info("Below list of commentIds where length of " + nameOfField + " is less than " + commentLength
+					+ " characters...");
 			blankText.forEach(id -> {
 				logger.info(id.toString());
 			});
