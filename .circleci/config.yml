@@ -5,8 +5,9 @@ workflows:
   maven_test:
     jobs:
       - maven/test
-      - store_test_results:
-          path: ~/test-results/MyAPIReports/
+      - run: make build
+            - store_artifacts:
+                path: /target/site/serenity
   
 #   orbs:
 #   maven: circleci/maven@1.0.1
