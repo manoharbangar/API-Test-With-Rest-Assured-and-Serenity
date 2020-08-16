@@ -4,10 +4,10 @@ version: 2.1
 workflows:
   maven_test:
     jobs:
-    - run:
-       - maven/test
-    - run:
-       - store_test_results:
+     - run:
+         - maven/test
+      - run:
+         - store_test_results:
            path: ~/target/site/serenity
   
 #   orbs:
