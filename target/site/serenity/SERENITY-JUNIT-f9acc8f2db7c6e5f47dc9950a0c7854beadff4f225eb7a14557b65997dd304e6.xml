@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="To validate the comments for the post made by specific user" skipped="0" tests="2" time="31.28" timestamp="2020-08-16 02:12:33"><testcase name="To validate if length of body in the comment is not less than given characters"/></testsuite>

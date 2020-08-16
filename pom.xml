@@ -13,7 +13,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<serenity.version>2.2.12</serenity.version>
-		<serenity.maven.version>2.2.5</serenity.maven.version>
+		<serenity.maven.version>1.5.9</serenity.maven.version>
 		<serenity.cucumber5.version>2.2.5</serenity.cucumber5.version>
 		<cucumber.version>5.6.0</cucumber.version>
 		<maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
@@ -52,11 +52,6 @@
 		</dependency>
 		<dependency>
 			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-java</artifactId>
-			<version>${cucumber.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit</artifactId>
 			<version>${cucumber.version}</version>
 		</dependency>
@@ -65,9 +60,31 @@
 			<artifactId>serenity-rest-assured</artifactId>
 			<version>${serenity.version}</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-simple</artifactId>
+    <version>1.7.30</version>
+    <scope>test</scope>
+</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>net.serenity-bdd.maven.plugins</groupId>
+				<artifactId>serenity-maven-plugin</artifactId>
+				<version>${serenity.maven.version}</version>
+				<executions>
+					<execution>
+						<id>serenity-reports</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>aggregate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

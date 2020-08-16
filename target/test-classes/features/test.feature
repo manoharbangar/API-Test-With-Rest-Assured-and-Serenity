@@ -10,13 +10,13 @@ Feature: To validate the comments for the post made by specific user
     Examples: 
       | userName |
       | Bret     |
-      | Antonette        |
-      | Samantha         |
-      | Karianne         |
-      | Kamren           |
-      | Leopoldo_Corkery |
-      | Elwyn.Skiles     |
-      | Maxime_Nienow    |
+      #| Antonette        |
+      #| Samantha         |
+      #| Karianne         |
+      #| Kamren           |
+      #| Leopoldo_Corkery |
+      #| Elwyn.Skiles     |
+      #| Maxime_Nienow    |
       | Delphine |
 
   | Moriah.Stanton   |

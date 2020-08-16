@@ -9,7 +9,6 @@ public class StepsForComments extends MasterSteps {
 
 	@Given("userId is obtained by searching username {string}")
 	public void userid_is_obtained_by_searching_username(String userName) {
-		
 		// searchUserName method will get userId
 		searchUserName(userName);
 	}
@@ -31,7 +30,7 @@ public class StepsForComments extends MasterSteps {
 	public void validate_that_email_in_the_comment_section_is_in_the_proper_format() {
 		// getEmailIdsForComments method will get emailIds from comments
 		getEmailIdsForComments();
-		// Validate emails using apache commons validator library
+		// Validate emails using regex
 		validateFormatOfEmailIds();
 	}
 
@@ -39,15 +38,14 @@ public class StepsForComments extends MasterSteps {
 	public void validate_that_name_in_the_comment_section_are_not_empty() {
 		// getNamesForComments method will get names from comments
 		getNamesForComments();
-		// Validate emails using apache commons validator library
-		validateIfTextEmpty(testContext.getCommentsManager().getNamesFromComments());
+		validateIfTextEmpty(testContext.getCommentsManager().getNamesFromComments(),"name");
 	}
 
 	@Then("validate that text body in the comment section is not empty")
 	public void validate_that_text_body_in_the_comment_section_is_not_empty() {
 		// getNamesForComments method will get bodys from comments
 		getBodysForComments();
-		validateIfTextEmpty(testContext.getCommentsManager().getBodysFromComments());
+		validateIfTextEmpty(testContext.getCommentsManager().getBodysFromComments(),"body");
 	}
 
 	@Then("validate that the length of text body in the comment is not less than {string} characters")
@@ -55,7 +53,7 @@ public class StepsForComments extends MasterSteps {
 		// getBodysForComments method will validate if length of comment body
 		// is not less than required characters
 		getBodysForComments();
-		validateLengthOfComment(testContext.getCommentsManager().getBodysFromComments());
+		validateLengthOfComment(testContext.getCommentsManager().getBodysFromComments(),Integer.parseInt(commentLength));
 	}
 
 }

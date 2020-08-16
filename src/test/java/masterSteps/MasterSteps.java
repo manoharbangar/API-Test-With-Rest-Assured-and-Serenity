@@ -1,14 +1,23 @@
 package masterSteps;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import cucumber.TestContext;
+
 
 public class MasterSteps {
 	protected TestContext testContext;
+	Logger logger;
 
 	public MasterSteps() {
 		testContext = new TestContext();
+		logger = LoggerFactory.getLogger(MasterSteps.class);
 	}
 
 	protected void searchUserName(String userName) {
@@ -59,6 +68,7 @@ public class MasterSteps {
 	protected void validateFormatOfEmailIds() {
 		List<String> invalidEmailIds = new ArrayList<String>();
 		List<String> emailIdsFromComments = testContext.getCommentsManager().getEmailIdsFromComments();
+		
 		emailIdsFromComments.forEach(emailId -> {
 			// if (!EmailValidation.isValidEmail(emailId)) {
 			if (emailId.endsWith("net")) {
@@ -72,34 +82,36 @@ public class MasterSteps {
 		}
 	}
 
-	protected void validateIfTextEmpty(List<String> textToValidate) {
-		List<String> blankText = new ArrayList<String>();
+	protected void validateIfTextEmpty(List<String> textToValidate, String text) {
+		List<Integer> blankText = new ArrayList<Integer>();
 		textToValidate.forEach(textValue -> {
 			// if (textValue.isEmpty()) {
-			if (textValue.length() < 20) {
-				blankText.add(textValue);
+			if (textValue.length() < 6) {
+				int commentId = testContext.getCommentsManager().getCommentIdsOnPosts().get(textToValidate.indexOf(textValue));
+				blankText.add(commentId);
 			}
 		});
 
 		if (blankText.size() > 0) {
-			blankText.forEach(name -> {
-				System.out.println("Name less than 20:- " + name);
+			logger.info("CommentIds where values are empty for "+ text);
+			blankText.forEach(value -> {
+				logger.info(value.toString());
+				
 			});
 		}
 	}
 
-	protected void validateLengthOfComment(List<String> textToValidate) {
+	protected void validateLengthOfComment(List<String> textToValidate, int commentLength) {
 		List<String> blankText = new ArrayList<String>();
 		textToValidate.forEach(textValue -> {
-			// if (textValue.isEmpty()) {
-			if (textValue.length() > 30) {
+			if (textValue.length() < commentLength) {
 				blankText.add(textValue);
 			}
 		});
 
 		if (blankText.size() > 0) {
 			blankText.forEach(name -> {
-				System.out.println("Comments not less than 30:- " + name);
+				System.out.println("Comments not less than " + commentLength + ":- " + name);
 			});
 		}
 	}

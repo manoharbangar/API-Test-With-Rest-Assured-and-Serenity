@@ -1,6 +1,10 @@
 package apiMachine;
 
 import java.util.List;
+
+import org.junit.Assert;
+
+import io.restassured.response.Response;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.util.EnvironmentVariables;
 import net.thucydides.core.util.SystemEnvironmentVariables;
@@ -20,8 +24,9 @@ public class EndPoints {
 
 	// Method to return userId for give userName
 	public int getUserId(String userName) {
-		List<Integer> allUsersIds = SerenityRest.given().param("username", userName).get(usersEndPoint).jsonPath()
-				.get("id");
+		Response response = SerenityRest.given().param("username", userName).get(usersEndPoint);
+		Assert.assertEquals(response.getStatusCode(),200);
+		List<Integer> allUsersIds = response.jsonPath().get("id");
 		if (allUsersIds.size() == 1) {
 			return allUsersIds.get(0);
 		} else if (allUsersIds.size() == 0) {
@@ -35,8 +40,10 @@ public class EndPoints {
 
 	// Method to return List of Posts for given userId
 	public List<Integer> getUserPosts(int userId) {
-		List<Integer> userPostIds = SerenityRest.given().param("userId", userId).get(postsEndPoint).jsonPath()
-				.get("id");
+		System.out.println(userId);
+		Response response = SerenityRest.given().param("userId", userId).get(postsEndPoint);
+		Assert.assertEquals(response.getStatusCode(),200);
+		List<Integer> userPostIds = response.jsonPath().get("id");
 		if (userPostIds.size() > 0) {
 			return userPostIds;
 		} else {
@@ -47,8 +54,9 @@ public class EndPoints {
 
 	// Method to return List of Posts for given userId
 	public List<Integer> getPostCommentIds(int postId) {
-		List<Integer> allCommentIds = SerenityRest.given().param("postId", postId).get(commentsEndPoint).jsonPath()
-				.get("id");
+		Response response = SerenityRest.given().param("postId", postId).get(commentsEndPoint);
+		Assert.assertEquals(response.getStatusCode(),200);
+		List<Integer> allCommentIds = response.jsonPath().get("id");
 		if (allCommentIds.size() > 0) {
 			return allCommentIds;
 		} else {
@@ -59,8 +67,9 @@ public class EndPoints {
 
 	// Method to return List of Posts for given userId
 	public List<String> getEmailIdsFromComments(int commentId) {
-		List<String> emailIdsFromComments = SerenityRest.given().param("id", commentId).get(commentsEndPoint).jsonPath()
-				.get("email");
+		Response response = SerenityRest.given().param("id", commentId).get(commentsEndPoint);
+		Assert.assertEquals(response.getStatusCode(),200);
+		List<String> emailIdsFromComments = response.jsonPath().get("email");
 		if (emailIdsFromComments.size() == 1) {
 			return emailIdsFromComments;
 		} else {
@@ -71,8 +80,9 @@ public class EndPoints {
 
 	// Method to return List of Posts for given userId
 	public List<String> getNamesFromComments(int commentId) {
-		List<String> namesFromComments = SerenityRest.given().param("id", commentId).get(commentsEndPoint).jsonPath()
-				.get("name");
+		Response response = SerenityRest.given().param("id", commentId).get(commentsEndPoint);
+		Assert.assertEquals(response.getStatusCode(),200);
+		List<String> namesFromComments = response.jsonPath().get("name");
 		if (namesFromComments.size() == 1) {
 			return namesFromComments;
 		} else {
@@ -83,8 +93,9 @@ public class EndPoints {
 
 	// Method to return List of Posts for given userId
 	public List<String> getBodysFromComments(int commentId) {
-		List<String> bodysFromComments = SerenityRest.given().param("id", commentId).get(commentsEndPoint).jsonPath()
-				.get("body");
+		Response response = SerenityRest.given().param("id", commentId).get(commentsEndPoint);
+		Assert.assertEquals(response.getStatusCode(),200);
+		List<String> bodysFromComments = response.jsonPath().get("body");
 		if (bodysFromComments.size() == 1) {
 			return bodysFromComments;
 		} else {
