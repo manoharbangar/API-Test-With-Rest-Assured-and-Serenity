@@ -4,8 +4,8 @@ version: 2.1
 workflows:
   maven_test:
     jobs:
-        run:
+        mvnRun:
          - maven/test
-        run:
+        resRun:
          - store_test_results:
             path: ~/target/site/serenity
