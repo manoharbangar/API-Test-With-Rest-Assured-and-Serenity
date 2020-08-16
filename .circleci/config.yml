@@ -5,6 +5,6 @@ workflows:
   maven_test:
     jobs:
       - maven/test
-  - store_artifacts:
+  store_artifacts:
           path: /target/serenity
           destination: serenity
