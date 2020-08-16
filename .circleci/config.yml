@@ -6,8 +6,8 @@ workflows:
     jobs:
       - maven/test
       - run: #make build
-      - store_test_results:
-            path: ~/target/site/serenity
+            - store_test_results:
+                path: ~/target/site/serenity
   
 #   orbs:
 #   maven: circleci/maven@1.0.1
