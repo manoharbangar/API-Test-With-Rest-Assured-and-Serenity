@@ -5,7 +5,8 @@ workflows:
   maven_test:
     jobs:
       - maven/test
-- run: #make build
+  report:
+    run: #make build
      - store_test_results:
          path: ~/target/site/serenity
   
