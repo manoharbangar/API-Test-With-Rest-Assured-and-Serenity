@@ -5,3 +5,7 @@ workflows:
   maven_test:
     jobs:
       - maven/test
+   maven_test:
+    jobs:
+      - mvn serenity:Aggregate
+
