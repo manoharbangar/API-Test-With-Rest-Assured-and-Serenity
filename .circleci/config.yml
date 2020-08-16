@@ -4,16 +4,8 @@ version: 2.1
 workflows:
   maven_test:
     jobs:
-     - run:
+        - run:
          - maven/test
-      - run:
+        - run:
          - store_test_results:
-           path: ~/target/site/serenity
-  
-#   orbs:
-#   maven: circleci/maven@1.0.1
-# version: 2.1
-# workflows:
-#   maven_test:
-#     jobs:
-#      - maven/serenity:aggregate
+            path: ~/target/site/serenity
