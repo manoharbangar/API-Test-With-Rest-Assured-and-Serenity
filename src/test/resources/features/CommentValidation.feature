@@ -42,5 +42,5 @@ Feature: To validate the comments for the post made by specific user
 
     Examples: 
       | userName | commentLength |
-      | Bret     |           150 |
-      | Delphine |           150 |
+      | Bret     |           50 |
+      | Delphine |           50 |
