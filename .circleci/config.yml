@@ -7,6 +7,5 @@ workflows:
       build:
         steps:
           - maven/test # checkout, build, test, and upload test results
-          - run: mkdir test-reports
           - store_test_results:
                 path: ~/target/site/serenity
