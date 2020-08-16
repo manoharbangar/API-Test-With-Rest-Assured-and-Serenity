@@ -4,5 +4,7 @@ version: 2.1
 workflows:
   maven_test:
     jobs:
-      - maven/test
-      - maven/serenity:aggregate
+    steps: # a collection of executable commands
+
+      - run: mvn test
+      - run: mvn serenity:aggregate
