@@ -7,5 +7,5 @@ workflows:
       - maven/test
    maven_test:
     jobs:
-      - mvn serenity:Aggregate
+      - maven/Serenity:Aggregate
 
