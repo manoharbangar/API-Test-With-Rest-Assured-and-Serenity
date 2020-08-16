@@ -5,8 +5,6 @@ workflows:
   maven_test:
     jobs:
       - maven/test
-      - store_test_results:
-          path: ~/test-results
   
 #   orbs:
 #   maven: circleci/maven@1.0.1
