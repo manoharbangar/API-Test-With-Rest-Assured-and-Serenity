@@ -1,2 +1,5 @@
+apiMachine\EndPoints.class
+cucumber\TestContext.class
+masterSteps\MasterSteps.class
 utils\CommentsManager.class
 utils\EmailValidation.class

@@ -1,5 +1,2 @@
-apiMachine\EndPoints.class
 runners\TestRunner.class
-cucumber\TestContext.class
-masterSteps\MasterSteps.class
 stepDefinitions\StepsForComments.class
