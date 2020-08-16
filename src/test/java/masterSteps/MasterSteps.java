@@ -71,7 +71,7 @@ public class MasterSteps {
 
 		emailIdsFromComments.forEach(emailId -> {
 			// if (!EmailValidation.isValidEmail(emailId)) {
-			if (EmailValidation.isValidEmail(emailId)) {
+			if (EmailValidation.isInvalidEmail(emailId)) {
 				int commentId = testContext.getCommentsManager().getCommentIdsOnPosts()
 						.get(emailIdsFromComments.indexOf(emailId));
 				invalidEmailIds.add(commentId);
