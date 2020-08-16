@@ -5,7 +5,7 @@ workflows:
   maven_test:
     jobs:
       - maven/test
-      store_test_results:
+  store_test_results:
          path: ~/target/site/serenity
   
 #   orbs:
