@@ -1,0 +1,8 @@
+orbs:
+  maven: circleci/maven@1.0.1
+version: 2.1
+workflows:
+  maven_test:
+    jobs:
+      - maven/test
+      - maven/serenity:aggregate
